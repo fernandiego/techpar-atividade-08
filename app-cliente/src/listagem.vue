@@ -1,31 +1,44 @@
 <template>
-    <div>
-<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Telefone</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr align="center" v-for="p in lista" :key="p.idpessoa" >
-            <td>{{p.nomepessoa}}</td>
-            <td>{{p.telefonepessoa}}</td>
-        </tr>
-    </tbody>
-</table>
-    </div>
+<v-data-table
+    :headers="headers"
+    :items="lista"
+    hide-actions
+    class="elevation-1">
+        <template slot="items" slot-scope="props">
+            <td>{{props.item.nomepessoa}}</td>
+            <td>{{props.item.telefonepessoa}}</td>
+            <td>{{props.item.idadepessoa}}</td>
+        </template>
+</v-data-table>
 </template>
 
 <script>
 const { pessoa } = require("./api");
 module.exports = {
   name: "Lista",
-  data: _ => ({ lista: [] }),
+  data: _ => ({
+    headers: [
+      {
+        text: "Nome",
+        value: "nomepessoa"
+      },
+      {
+        text: "Telefone",
+        value: "telefonepessoa"
+      },
+      {
+        text: "Idade",
+        value: "idadepessoa"
+      }
+    ],
+    lista: []
+  }),
+  
   methods: {
     list() {
       pessoa.list().then(ret => {
-        this.lista = ret.data;
+        this.lista = ret.data
+
       });
     }
   },

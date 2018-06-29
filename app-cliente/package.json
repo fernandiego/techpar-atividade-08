@@ -11,12 +11,14 @@
   "license": "ISC",
   "devDependencies": {
     "browserify": "^16.2.2",
+    "browserify-css": "^0.14.0",
     "budo": "^11.3.2",
     "vueify": "^9.4.1"
   },
   "browserify": {
     "transform": [
-      "vueify"
+      "vueify",
+      "browserify-css"
     ]
   },
   "dependencies": {

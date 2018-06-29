@@ -10,6 +10,12 @@
       label="Telefone"
       required
     ></v-text-field>
+    <v-text-field
+      v-model="pessoa.idadepessoa"
+      label="Idade"
+      type="number"
+      required
+    ></v-text-field>
     <v-btn
       type="submit"
     >
@@ -22,7 +28,7 @@
 const {pessoa} = require('./api')
 module.exports = {
   name: "Form",
-  data: _ => ({ pessoa: { nomepessoa: "", telefonepessoa:"" } }),
+  data: _ => ({ pessoa: { nomepessoa: "", telefonepessoa:"", idadepessoa:18 } }),
   methods: {
     dosave() {
       pessoa.save(this.pessoa)
