@@ -1,27 +1,24 @@
 <template>
- <body>
   <div>
-    <v-app>
-      <v-toolbar app>
-        <v-toolbar-title>My Application</v-toolbar-title>
-      </v-toolbar>
-      <v-navigation-drawer app></v-navigation-drawer>
-      <v-content>
-        <v-container fluid>
-          Hello World
-        </v-container>
-      </v-content>
-      <v-footer></v-footer>
-    </v-app>
+    <a href="#/listagem">Listar Pessoas</a>
+    <a href="#/form">Form</a> 
+    <router-view></router-view>
   </div>
-</body>   
 </template>
 
 <script>
+const VueRouter = require("vue-router");
+
 module.exports = {
-  name: "freedom"
+  name: "router",
+  router: new VueRouter({
+    routes: [
+      { path: "/listagem", component: require("./listagem.vue") },
+      { path: "/form", component: require("./form.vue") }
+    ]
+  })
 };
 </script>
+
 <style>
 </style>
-
