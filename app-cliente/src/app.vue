@@ -22,7 +22,7 @@ module.exports = {
   router: new VueRouter({
     routes: [
       { path: "/listagem", component: require("./listagem.vue") },
-      { path: "/form", component: require("./form.vue") }
+      { path: "/form/:idpessoa?", component: require("./form.vue") }
     ]
   })
 };

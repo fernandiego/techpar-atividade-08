@@ -5,8 +5,10 @@ const api = axios.create({
 });
 
 const pessoa = {
-    list: _ => api.get('/list'),
-    save: data => api.post('/save', data)  
+  list: _ => api.get('/list'),
+  save: data =>  api[data.idpessoa ? 'put' : 'post']('/save', data),
+  find: idpessoa => api.get('/' + idpessoa),
+  del: idpessoa => api.delete(`/${idpessoa}`) 
 }
 
-module.exports = {pessoa}
+module.exports = { pessoa }

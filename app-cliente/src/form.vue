@@ -25,13 +25,16 @@
 </template>
 
 <script>
-const {pessoa} = require('./api')
+const { pessoa } = require("./api");
 module.exports = {
   name: "Form",
-  data: _ => ({ pessoa: { nomepessoa: "", telefonepessoa:"", idadepessoa:18 } }),
+  data: _ => ({
+    pessoa: { nomepessoa: "", telefonepessoa: "", idadepessoa: 18 }
+  }),
   methods: {
     dosave() {
-      pessoa.save(this.pessoa)
+      pessoa
+        .save(this.pessoa)
         .then(ret => {
           this.pessoa = ret.data;
           this.$router.push("/listagem");
@@ -40,6 +43,14 @@ module.exports = {
           console.log(err);
           alert("Erro ao salvar pessoa");
         });
+    }
+  },
+  created() {
+    if (this.$route.params.idpessoa) {
+      console.log("aefsaef");
+      pessoa.find(this.$route.params.idpessoa).then(ret => {
+        this.pessoa = ret.data;
+      })
     }
   }
 };
