@@ -28,10 +28,37 @@ app.post("/save", (req, res) => {
     console.log(err)
   })
 })
+app.put("/save", (req, res) => {
+  const pessoa = req.body
+  console.log(pessoa)
+  knex("pessoa").update(pessoa).where({idpessoa:pessoa.idpessoa}).then(ret => {
+      console.log(ret)
+      res.send(pessoa)
+  }).catch(err => {
+    res.status(500).send(err)
+    console.log(err)
+  })
+})
 
 app.get("/list", (req, res) => {
   knex("pessoa").select().then(ret => {
     res.send(ret)
+  }).catch(err => {
+    res.status(500).send(err)
+    console.log(err)
+  })
+})
+app.get("/:idpessoa", (req, res) => {
+  knex("pessoa").select().where(req.params).then(ret => {
+    res.send(ret[0])
+  }).catch(err => {
+    res.status(500).send(err)
+    console.log(err)
+  })
+})
+app.delete("/:idpessoa", (req, res) => {
+  knex("pessoa").del().where(req.params).then(ret => {
+    res.send('Ok')
   }).catch(err => {
     res.status(500).send(err)
     console.log(err)
